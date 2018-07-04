@@ -1,1 +1,2 @@
-gzdoom_build/
+node_modules/
+gzdoom-crash.log
