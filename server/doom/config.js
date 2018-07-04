@@ -53,7 +53,9 @@ mods.hddoom = {
 
 mods.idkfa = `${paths.mods}/idkfa/IDKFAv2.wad`;
 mods.ultimateDoomVisor = `${paths.mods}/Ultimate_DoomVisor_v1.85_2016-09-07/UDV_v1.85_A_BASE.pk3`;
-mods.projectBrutality = `${paths.mods}/project_brutality/project brutality 3.0 test 8-19-17.pk3`;
+mods.pbhud = `${paths.mods}/hxrtchud/HXRTCHUD-PB3_v8.2.pk3`;
+mods.brutalDoom = `${paths.mods}/brutal_doom/bd21testApr25.pk3`;
+mods.projectBrutality = `${paths.mods}/project_brutality/3.0_2018_01_21/Project Brutality 3.0 Test 1-21-18.pk3`;
 mods.andersMapInfo = `${paths.mods}/anders/mapinfo.txt`;
 mods.ultimateDoomOneEpisode = `${paths.mods}/anders/ultimate_doom_one_episode/mapinfo.txt`;
 
@@ -61,6 +63,8 @@ mods.mapsOfChaos = {
   overkill: `${paths.mods}/MapsOfChaos.2/mapsofchaos-ok.wad`,
   // D64ULTDM: `${paths.mods}/MapsOfChaos.2/D64ULTDM.WAD`,
 };
+
+mods.doomOpenWorld = `${paths.mods}/ultimate_doom_open_world/Doom1OWBeta.wad`;
 
 mods.psxDoom = {
   pcdfclt: `${paths.mods}/psxdoom/assets-enabled/PCDFCLT.PK3`,
@@ -137,7 +141,7 @@ const mapsOfChaos = {
     ...Object.values(mods.gzdoom),
     ...Object.values(mods.mapsOfChaos),
     mods.idkfa,
-    mods.ultimateDoomVisor,
+    mods.pbhud,
     mods.projectBrutality,
     ...Object.values(mods.hddoom),
     mods.ultimateDoomOneEpisode,
@@ -155,5 +159,5 @@ module.exports = {
     brutalDoom,
     brutalDoom64,
     mapsOfChaos,
-  }
+  },
 };
