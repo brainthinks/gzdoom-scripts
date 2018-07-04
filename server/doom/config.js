@@ -23,7 +23,8 @@ const paths = {
 };
 
 const bins = {
-  gzdoom: `${paths.gzdoom}/gzdoom`,
+  gzdoom: 'gzdoom',
+  // gzdoom: `${paths.gzdoom}/gzdoom`,
 };
 
 const wads = {
