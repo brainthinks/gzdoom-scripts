@@ -4,17 +4,20 @@
 
 // Import third-party dependencies
 const Koa = require('koa');
-// const serveStatic = require('serve-static');
+const StaticServer = require('koa-static');
 
 // Import local dependencies
 const config = require('./config')();
 const Logger = require('./logger/');
 const DoomRouter = require('./doom/router');
 
+// Constants
+const API_URL_PREFIX = '/api';
+
 // Declare instances
 const app = new Koa();
 const logger = Logger();
-const doomRouter = DoomRouter(logger);
+const doomRouter = DoomRouter(logger, API_URL_PREFIX);
 
 // Middleware: request logging
 app.use(async (ctx, next) => {
@@ -22,13 +25,11 @@ app.use(async (ctx, next) => {
   await next();
 });
 
-// app.use((req, res, next) => {
-//   if (DEFAULT_STATIC_SERVER_FILES.includes(req.url)) {
-//     return serveStatic(STATIC_SERVER_ASSETS_PATH)(req, res, next);
-//   }
+// Serve the basic webpage assets
+app.use(StaticServer('./assets/static'));
 
-//   return serveStatic(STATIC_CLIENT_PATH)(req, res, next);
-// });
+// Serve the client
+app.use(StaticServer('../client/build'));
 
 // Middleware: doom
 app

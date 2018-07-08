@@ -88,6 +88,57 @@ mods.brutalDoom64 = {
   ZD64MUSIC: `${paths.mods}/brutal_doom_64/ZD64MUSIC.pk3`,
 };
 
+mods.armyOfDarkness = `${paths.mods}/aoddoom1/aoddoom1.wad`;
+
+const armyOfDarkness = {
+  config: paths.getConfig('armyOfDarkness'),
+  savedir: paths.getConfigDir('armyOfDarkness'),
+  iwad: wads.ultimate_doom,
+  file: [
+    ...Object.values(mods.gzdoom),
+    mods.armyOfDarkness,
+  ],
+};
+
+const brutalDoom64 = {
+  config: paths.getConfig('brutalDoom64'),
+  savedir: paths.getConfigDir('brutalDoom64'),
+  iwad: wads.doom2,
+  file: [
+    ...Object.values(mods.brutalDoom64),
+    mods.andersMapInfo,
+  ],
+};
+
+const purist = {
+  config: paths.getConfig('purist'),
+  savedir: paths.getConfigDir('purist'),
+  iwad: wads.doom_registered,
+};
+
+const vanilla = {
+  config: paths.getConfig('vanilla'),
+  savedir: paths.getConfigDir('vanilla'),
+  iwad: wads.doom_registered,
+  file: [
+    ...Object.values(mods.gzdoom),
+  ],
+};
+
+const brutalDoom = {
+  config: paths.getConfig('brutalDoom'),
+  savedir: paths.getConfigDir('brutalDoom'),
+  iwad: wads.doom_registered,
+  file: [
+    ...Object.values(mods.gzdoom),
+    mods.idkfa,
+    mods.ultimateDoomVisor,
+    mods.brutalDoom,
+    ...Object.values(mods.hddoom),
+    mods.andersMapInfo,
+  ],
+};
+
 const psxDoomBrutal = {
   config: paths.getConfig('psxDoomBrutal'),
   savedir: paths.getConfigDir('psxDoomBrutal'),
@@ -102,33 +153,9 @@ const psxDoomBrutal = {
     mods.psxDoom.psxnmare,
     mods.psxDoom.psxsound,
     mods.psxDoom.psxwill,
-    mods.ultimateDoomVisor,
+    mods.pbhud,
     mods.projectBrutality,
     mods.psxDoom.psxload,
-    ...Object.values(mods.hddoom),
-    mods.andersMapInfo,
-  ],
-};
-
-const brutalDoom = {
-  config: paths.getConfig('brutalDoom'),
-  savedir: paths.getConfigDir('brutalDoom'),
-  iwad: wads.doom_registered,
-  file: [
-    ...Object.values(mods.gzdoom),
-    mods.ultimateDoomVisor,
-    mods.projectBrutality,
-    ...Object.values(mods.hddoom),
-    mods.andersMapInfo,
-  ],
-};
-
-const brutalDoom64 = {
-  config: paths.getConfig('brutalDoom64'),
-  savedir: paths.getConfigDir('brutalDoom64'),
-  iwad: wads.doom2,
-  file: [
-    ...Object.values(mods.brutalDoom64),
     mods.andersMapInfo,
   ],
 };
@@ -156,9 +183,12 @@ module.exports = {
   wads,
   mods,
   presets: {
-    psxDoomBrutal,
-    brutalDoom,
+    armyOfDarkness,
     brutalDoom64,
+    purist,
+    vanilla,
+    brutalDoom,
+    psxDoomBrutal,
     mapsOfChaos,
   },
 };
