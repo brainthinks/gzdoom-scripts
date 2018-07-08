@@ -42,12 +42,7 @@ module.exports = (logger, routePrefix = '') => {
       screenGrabber = null;
     });
 
-    const {
-      // instance,
-      command,
-      // bin,
-      // options,
-    } = runGZDoom(preset, {
+    const gzdoomOptions = {
       onStdOut: (data) => {
         logger.info('gzdoom.stdout', data.toString(), Date.now());
       },
@@ -68,7 +63,14 @@ module.exports = (logger, routePrefix = '') => {
 
         screenGrabber.stop();
       },
-    });
+    };
+
+    const {
+      // instance,
+      command,
+      // bin,
+      // options,
+    } = runGZDoom(preset, gzdoomOptions);
 
     logger.info('gzdoom.play', `running command ${command}`, Date.now());
 
@@ -79,6 +81,9 @@ module.exports = (logger, routePrefix = '') => {
     setTimeout(() => {
       screenGrabber.start();
     }, 10000);
+
+    // @todo - is there a better way to indicate that this request was successful?
+    ctx.response.status = 200;
 
     await next();
   });
