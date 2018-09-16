@@ -1,0 +1,29 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  /*@todo - this could be grid!!*/
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; }
+
+.launcher-main {
+  width: 100%;
+  height: 75%;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url("/img/launcher-main.jpg") no-repeat center center;
+  background-size: contain; }
+
+.launcher-debug {
+  width: 100%;
+  height: 25%;
+  overflow: auto;
+  background: url("/img/launcher-debug.gif") no-repeat center center;
+  background-size: contain; }
+
+/*# sourceMappingURL=doom.css.map*/

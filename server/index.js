@@ -5,6 +5,7 @@
 // Import third-party dependencies
 const Koa = require('koa');
 const StaticServer = require('koa-static');
+const socketio = require('socket.io');
 
 // Import local dependencies
 const config = require('./config')();
@@ -17,6 +18,8 @@ const API_URL_PREFIX = '/api';
 // Declare instances
 const app = new Koa();
 const logger = Logger();
+const io = socketio(app);
+
 const doomRouter = DoomRouter(logger, API_URL_PREFIX);
 
 // Middleware: request logging
@@ -29,7 +32,7 @@ app.use(async (ctx, next) => {
 app.use(StaticServer('./assets/static'));
 
 // Serve the client
-app.use(StaticServer('../client/build'));
+app.use(StaticServer('../client/dist'));
 
 // Middleware: doom
 app
@@ -39,6 +42,11 @@ app
 // Middleware Error Handling
 app.on('error', (err) => {
   logger.error('error', err.toString(), err, Date.now());
+});
+
+// On Socket Connection
+io.on('connection', function(socket){
+  console.log('a user connected');
 });
 
 // Start Server
