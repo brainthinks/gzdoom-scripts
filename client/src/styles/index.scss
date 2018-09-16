@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html, 
 body {
   width: 100%;
@@ -7,11 +11,13 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .launcher-main {
   width: 100%;
-  height: 75%;
+  height: 50%;
   overflow: auto;
 
   display: flex;
@@ -24,10 +30,48 @@ body {
 }
 
 .launcher-debug {
+  position: relative;
   width: 100%;
-  height: 25%;
-  overflow: auto;
+  height: 50%;
+  color: white;
+  border: solid white 2px;
+  
+  .console {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    overflow: auto;
+    z-index: 1;
+    padding: 0.5rem 0;
 
-  background: url('/img/launcher-debug.gif') no-repeat center center;
-  background-size: contain;
+    .command {
+      display: flex;
+
+      .prompt {
+        flex-grow: 0;
+        flex-shrink: 0;
+        color: red;
+        margin-right: 0.5rem;
+      }
+  
+      pre {
+        flex-grow: 1;
+        flex-shrink: 1;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin: 0;
+      }
+    }
+  }
+
+  .background {
+    width: 100%; 
+    height: 100%;  
+    opacity: 0.3;
+    z-index: -1;
+    background-size: contain;
+    background: url('/img/launcher-debug.gif') no-repeat center center;
+  }
 }

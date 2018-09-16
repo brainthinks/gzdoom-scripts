@@ -17,10 +17,12 @@ const DoomRouter = require('./doom/router');
 const API_URL_PREFIX = '/api';
 
 // Declare instances
-const app = new Koa();
 const logger = Logger();
+const app = new Koa();
+const server = http.createServer(app.callback());
+const io = socketio(server);
 
-const doomRouter = DoomRouter(logger, API_URL_PREFIX);
+const doomRouter = DoomRouter(logger, io, API_URL_PREFIX);
 
 // Middleware: request logging
 app.use(async (ctx, next) => {
@@ -44,17 +46,12 @@ app.on('error', (err) => {
   logger.error('error', err.toString(), err, Date.now());
 });
 
-// Create a "regular" http server for socket.io compatibility
-const server = http.createServer(app.callback());
-
-// Create the socket.io server
-const io = socketio(server);
-
 // On Socket Connection
 io.on('connection', function(socket){
-  console.log('a user connected');
+  logger.info('socket.io', 'a user connected', Date.now());
+
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+    logger.info('socket.io', 'a user disconnected', Date.now());
   });
 });
 
@@ -62,6 +59,5 @@ io.on('connection', function(socket){
 server.listen(config.httpServer.port, () => {
   const message = `server listening on port ${config.httpServer.port}`;
 
-  console.log(message);
   logger.info('server.started', message, Date.now());
 });

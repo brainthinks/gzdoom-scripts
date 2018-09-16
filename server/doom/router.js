@@ -6,7 +6,7 @@ const uuidv4 = require('uuid/v4');
 const runGZDoom = require('./gzdoomWrapper');
 const _ScreenGrabber = require('../ffmpeg/');
 
-module.exports = (logger, routePrefix = '') => {
+module.exports = (logger, io, routePrefix = '') => {
   const router = new Router();
   const ScreenGrabber = _ScreenGrabber(logger);
 
@@ -23,45 +23,60 @@ module.exports = (logger, routePrefix = '') => {
     // const preset = 'psxDoomBrutal';
     const preset = 'mapsOfChaos';
 
-    let screenGrabber = ScreenGrabber.fromPrefix('gzdoom');
+    // let screenGrabber = ScreenGrabber.fromPrefix('gzdoom');
 
-    screenGrabber.on('stdout', (data) => logger.info(`ffmpeg.stdout.${screenGrabber.id}`, data.toString(), Date.now()));
-    screenGrabber.on('stderr', (data) => logger.info(`ffmpeg.stderr.${screenGrabber.id}`, data.toString(), Date.now()));
-    screenGrabber.on('close', (code) => {
-      if (code === 0) {
-        logger.info(`ffmpeg.close.${screenGrabber.id}`, `closed with code ${code}`, Date.now());
-      }
-      else {
-        const message = `closed with code ${code}`;
+    // screenGrabber.on('stdout', (data) => logger.info(`ffmpeg.stdout.${screenGrabber.id}`, data.toString(), Date.now()));
+    // screenGrabber.on('stderr', (data) => logger.info(`ffmpeg.stderr.${screenGrabber.id}`, data.toString(), Date.now()));
+    // screenGrabber.on('close', (code) => {
+    //   if (code === 0) {
+    //     logger.info(`ffmpeg.close.${screenGrabber.id}`, `closed with code ${code}`, Date.now());
+    //   }
+    //   else {
+    //     const message = `closed with code ${code}`;
 
-        logger.error(`ffmpeg.close.${screenGrabber.id}`, message, new Error(message), Date.now());
-      }
+    //     logger.error(`ffmpeg.close.${screenGrabber.id}`, message, new Error(message), Date.now());
+    //   }
 
-      logger.info(`ffmpeg.terminated.${screenGrabber.id}`, instanceId, Date.now());
+    //   logger.info(`ffmpeg.terminated.${screenGrabber.id}`, instanceId, Date.now());
 
-      screenGrabber = null;
-    });
+    //   screenGrabber = null;
+    // });
 
     const gzdoomOptions = {
       onStdOut: (data) => {
-        logger.info('gzdoom.stdout', data.toString(), Date.now());
+        const message = data.toString();
+        const date = Date.now();
+
+        logger.info('gzdoom.stdout', message, date);
+        io.emit('gzdoom.stdout', message, date);
       },
       onStdErr: (data) => {
-        logger.warn('gzdoom.stderr', data.toString(), Date.now());
+        const message = data.toString();
+        const date = Date.now();
+
+        logger.warn('gzdoom.stderr', message, date);
+        io.emit('gzdoom.stderr', message, date);
       },
       onClose: (code) => {
+        const date = Date.now();
+
         if (code === 0) {
-          logger.info('gzdoom.close', `gzdoom closed with code ${code}`, Date.now());
+          const message = `gzdoom closed with code ${code}`;
+
+          logger.info('gzdoom.close', message, date);
+          io.emit('gzdoom.stdout', message, date);
         }
         else {
           const message = `gzdoom closed with code ${code}`;
 
-          logger.error('gzdoom.close', message, new Error(message), Date.now());
+          logger.error('gzdoom.close', message, new Error(message), date);
+          io.emit('gzdoom.stderr', message, date);
         }
 
-        logger.info('gzdoom.terminated', instanceId, Date.now());
+        logger.info('gzdoom.terminated', instanceId, date);
+        io.emit('gzdoom.stdout', instanceId, date);
 
-        screenGrabber.stop();
+        // screenGrabber.stop();
       },
     };
 
@@ -72,14 +87,18 @@ module.exports = (logger, routePrefix = '') => {
       // options,
     } = runGZDoom(preset, gzdoomOptions);
 
-    logger.info('gzdoom.play', `running command ${command}`, Date.now());
+    const message = `running command ${command}`;
+    const date = Date.now();
+
+    logger.info('gzdoom.play', message, date);
+    io.emit('gzdoom.stdout', message, date);
 
     // gzdoom with project brutality is apparently resource intensive, so
     // wait a few seconds before starting to record so that gzdoom can be
     // done with its initial cpu spike, which causes the audio to go out
     // of sync in the ffmpeg recording
     setTimeout(() => {
-      screenGrabber.start();
+      // screenGrabber.start();
     }, 10000);
 
     // @todo - is there a better way to indicate that this request was successful?
