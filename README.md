@@ -8,8 +8,13 @@ I created this because I wanted a more organized and user-friendly way to get my
 ## System Requirements
 
 * Node.js >= 8
+* libfluidsynth
 
 The operating system shouldn't matter, as long as it can run Node.js, but I have only tested it on Linux Mint 18.
+
+You'll need libfluidsynth to play the doom midi soundtrack
+
+`sudo apt install libfluidsynth*`
 
 
 ## Roadmap
@@ -34,3 +39,16 @@ At some point, I would like to be able to launch any game I want from this tool,
 * Thanks to the team who made zdoom
 * Thanks to coelckers for gzdoom
 * Thanks to the many others who have made this entire project and community possible
+
+## Resources
+
+* GZDoom
+* Sgt_Mark_IV / Brutal Doom
+    * [https://twitter.com/BrutalDoomGuy](https://twitter.com/BrutalDoomGuy)
+    * [https://www.youtube.com/user/SGtMarkIV/videos](https://www.youtube.com/user/SGtMarkIV/videos)
+* pa1nki113r / Project Brutality
+    * [https://github.com/pa1nki113r/Project_Brutality](https://github.com/pa1nki113r/Project_Brutality)
+* Maps of Chaos
+* Project Remap
+    * [https://www.youtube.com/channel/UCu_ZCOwSdqeWEKTmH6VX9KQ](https://www.youtube.com/channel/UCu_ZCOwSdqeWEKTmH6VX9KQ)
+    * [https://www.moddb.com/games/doom-ii/addons/hells-playground-v10](https://www.moddb.com/games/doom-ii/addons/hells-playground-v10)

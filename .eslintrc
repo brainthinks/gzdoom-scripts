@@ -1,8 +1,0 @@
-{
-  "extends": "standard",
-  "rules": {
-    "brace-style": ["error", "stroustrup"],
-    "comma-dangle": [2, "always-multiline"],
-    "semi": [2, "always"]
-  }
-}

@@ -6,22 +6,33 @@ const uuidv4 = require('uuid/v4');
 const runGZDoom = require('./gzdoomWrapper');
 const _ScreenGrabber = require('../ffmpeg/');
 
+const config = require('./config');
+
+const availablePresets = Object.keys(config.presets);
+
 module.exports = (logger, io, routePrefix = '') => {
   const router = new Router();
   const ScreenGrabber = _ScreenGrabber(logger);
 
-  router.post(`${routePrefix}/play`, async (ctx, next) => {
+  router.get('presets', `${routePrefix}/presets`, async (ctx, next) => {
+    ctx.response.status = 200;
+    ctx.response.type = 'json';
+    ctx.response.body = availablePresets;
+
+    await next();
+  });
+
+  router.get('play', `${routePrefix}/play/:preset`, async (ctx, next) => {
     logger.info('gzdoom.play', 'About to play gzdoom', Date.now());
 
     const instanceId = uuidv4();
 
-    // const preset = 'armyOfDarkness';
-    // const preset = 'brutalDoom64';
-    // const preset = 'purist';
-    // const preset = 'vanilla';
-    // const preset = 'brutalDoom';
-    // const preset = 'psxDoomBrutal';
-    const preset = 'mapsOfChaos';
+
+    let preset = ctx.params.preset;
+
+    if (!availablePresets.includes(preset)) {
+      preset = 'purist';
+    }
 
     // let screenGrabber = ScreenGrabber.fromPrefix('gzdoom');
 
@@ -76,7 +87,7 @@ module.exports = (logger, io, routePrefix = '') => {
         logger.info('gzdoom.terminated', instanceId, date);
         io.emit('gzdoom.stdout', instanceId, date);
 
-        // screenGrabber.stop();
+        // screenGrabbe.stop();
       },
     };
 
@@ -84,7 +95,7 @@ module.exports = (logger, io, routePrefix = '') => {
       // instance,
       command,
       // bin,
-      // options,
+      options,
     } = runGZDoom(preset, gzdoomOptions);
 
     const message = `running command ${command}`;
@@ -103,6 +114,12 @@ module.exports = (logger, io, routePrefix = '') => {
 
     // @todo - is there a better way to indicate that this request was successful?
     ctx.response.status = 200;
+    ctx.response.type = 'json';
+    ctx.response.body = {
+      preset,
+      command,
+      options,
+    };
 
     await next();
   });

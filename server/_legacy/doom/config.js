@@ -55,14 +55,49 @@ mods.hddoom = {
 mods.idkfa = `${paths.mods}/idkfa/IDKFAv2.wad`;
 mods.ultimateDoomVisor = `${paths.mods}/Ultimate_DoomVisor_v1.85_2016-09-07/UDV_v1.85_A_BASE.pk3`;
 mods.pbhud = `${paths.mods}/hxrtchud/HXRTCHUD-PB3_v8.2.pk3`;
-mods.brutalDoom = `${paths.mods}/brutal_doom/bd21testApr25.pk3`;
-mods.projectBrutality = `${paths.mods}/project_brutality/3.0_2018_01_21/Project Brutality 3.0 Test 1-21-18.pk3`;
+mods.brutalDoom = `${paths.mods}/brutal_doom/BD21RC7.pk3`;
+mods.projectBrutality = `${paths.mods}/project_brutality/project_brutality_master.pk3`;
 mods.andersMapInfo = `${paths.mods}/anders/mapinfo.txt`;
 mods.ultimateDoomOneEpisode = `${paths.mods}/anders/ultimate_doom_one_episode/mapinfo.txt`;
 
 mods.mapsOfChaos = {
   overkill: `${paths.mods}/MapsOfChaos.2/mapsofchaos-ok.wad`,
   // D64ULTDM: `${paths.mods}/MapsOfChaos.2/D64ULTDM.WAD`,
+};
+
+mods.hellsPlayground = {
+  gzdoomFiles: [
+    `${paths.mods}/hells_playground/Hells Playground V1.0/Resource Files/GZDoom/Hell's Playground GZDoom Missing Object Patch.pk3`,
+    `${paths.mods}/hells_playground/Hells Playground V1.0/Resource Files/GZDoom/Hell's Playground GZDoom Texture Improvement Addon.pk3`,
+  ],
+  resourceFiles: [
+    `${paths.mods}/hells_playground/Hells Playground V1.0/Resource Files/Hell's Playground Resource File 1.pk3`,
+    `${paths.mods}/hells_playground/Hells Playground V1.0/Resource Files/Hell's Playground Resource File 2.pk3`,
+  ],
+  brutalDoom: [
+    // `${paths.mods}/hells_playground/Hells Playground V1.0/Resource Files/Brutal Doom Patch/Hell's Playground Brutal Doom Patch.pk3`,
+    // `${paths.mods}/hells_playground/Hells Playground V1.0/Hell's Playground/Brutal Doom Version/custom monsters/Hell's Playground  Brutal Doom + custom  200 monsters.wad`,
+    `${paths.mods}/hells_playground/Hells Playground V1.0/Hell's Playground/Brutal Doom Version/original + brutal doom monsters/Hell's Playground  Brutal Doom 200 monsters.wad`,
+  ],
+};
+
+mods.ultraHdTextures = {
+  doom: [
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Main_file-1k.pk3`,
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Doom_1_Override-1k.pk3`,
+  ],
+  doom2: [
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Main_file-1k.pk3`,
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Doom_2_Override-1k.pk3`,
+  ],
+  tnt: [
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Main_file-1k.pk3`,
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Evilution_Override-1k.pk3`,
+  ],
+  plutonia: [
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Main_file-1k.pk3`,
+    `${paths.mods}/hoover1979-ultrahd-doom-texture-pack/HOOVER1979_UltraHD_Texture_Pack_02102018-1k/HOOVER1979_UltraHD_Texture_Pack_02102018_Plutonia_Experiment_Override-1k.pk3`,
+  ],
 };
 
 mods.doomOpenWorld = `${paths.mods}/ultimate_doom_open_world/Doom1OWBeta.wad`;
@@ -88,28 +123,6 @@ mods.brutalDoom64 = {
   ZD64MUSIC: `${paths.mods}/brutal_doom_64/ZD64MUSIC.pk3`,
 };
 
-mods.armyOfDarkness = `${paths.mods}/aoddoom1/aoddoom1.wad`;
-
-const armyOfDarkness = {
-  config: paths.getConfig('armyOfDarkness'),
-  savedir: paths.getConfigDir('armyOfDarkness'),
-  iwad: wads.ultimate_doom,
-  file: [
-    ...Object.values(mods.gzdoom),
-    mods.armyOfDarkness,
-  ],
-};
-
-const brutalDoom64 = {
-  config: paths.getConfig('brutalDoom64'),
-  savedir: paths.getConfigDir('brutalDoom64'),
-  iwad: wads.doom2,
-  file: [
-    ...Object.values(mods.brutalDoom64),
-    mods.andersMapInfo,
-  ],
-};
-
 const purist = {
   config: paths.getConfig('purist'),
   savedir: paths.getConfigDir('purist'),
@@ -125,23 +138,9 @@ const vanilla = {
   ],
 };
 
-const brutalDoom = {
-  config: paths.getConfig('brutalDoom'),
-  savedir: paths.getConfigDir('brutalDoom'),
-  iwad: wads.doom_registered,
-  file: [
-    ...Object.values(mods.gzdoom),
-    mods.idkfa,
-    mods.ultimateDoomVisor,
-    mods.brutalDoom,
-    ...Object.values(mods.hddoom),
-    mods.andersMapInfo,
-  ],
-};
-
-const psxDoomBrutal = {
-  config: paths.getConfig('psxDoomBrutal'),
-  savedir: paths.getConfigDir('psxDoomBrutal'),
+const psxDoom = {
+  config: paths.getConfig('psxDoom'),
+  savedir: paths.getConfigDir('psxDoom'),
   exec: `${paths.mods}/psxdoom/PSXDOOM.CFG`,
   iwad: wads.doom2,
   file: [
@@ -153,26 +152,58 @@ const psxDoomBrutal = {
     mods.psxDoom.psxnmare,
     mods.psxDoom.psxsound,
     mods.psxDoom.psxwill,
-    mods.pbhud,
     mods.projectBrutality,
     mods.psxDoom.psxload,
     mods.andersMapInfo,
   ],
 };
 
-const mapsOfChaos = {
-  config: paths.getConfig('mapsOfChaos'),
-  savedir: paths.getConfigDir('mapsOfChaos'),
+const brutalDoom = {
+  config: paths.getConfig('brutalDoom'),
+  savedir: paths.getConfigDir('brutalDoom'),
   iwad: wads.ultimate_doom,
-  // iwad: wads.doom2,
   file: [
     ...Object.values(mods.gzdoom),
     ...Object.values(mods.mapsOfChaos),
-    mods.idkfa,
-    mods.pbhud,
-    mods.projectBrutality,
-    ...Object.values(mods.hddoom),
+    mods.brutalDoom,
     mods.ultimateDoomOneEpisode,
+    mods.andersMapInfo,
+  ],
+};
+
+const brutalDoom2 = {
+  config: paths.getConfig('brutalDoom'),
+  savedir: paths.getConfigDir('brutalDoom'),
+  iwad: wads.doom2,
+  file: [
+    ...Object.values(mods.gzdoom),
+    ...Object.values(mods.mapsOfChaos),
+    mods.brutalDoom,
+    mods.andersMapInfo,
+  ],
+};
+
+const hellsPlayground = {
+  config: paths.getConfig('hellsPlayground'),
+  savedir: paths.getConfigDir('hellsPlayground'),
+  iwad: wads.doom2,
+  file: [
+    ...Object.values(mods.gzdoom),
+    mods.brutalDoom,
+    // ...mods.ultraHdTextures.doom2,
+    ...mods.hellsPlayground.gzdoomFiles,
+    ...mods.hellsPlayground.brutalDoom,
+    ...mods.hellsPlayground.resourceFiles,
+    // mods.andersMapInfo,
+  ],
+};
+
+const brutalDoom64 = {
+  config: paths.getConfig('brutalDoom64'),
+  savedir: paths.getConfigDir('brutalDoom64'),
+  iwad: wads.doom2,
+  file: [
+    ...Object.values(mods.brutalDoom64),
     mods.andersMapInfo,
   ],
 };
@@ -183,12 +214,12 @@ module.exports = {
   wads,
   mods,
   presets: {
-    armyOfDarkness,
-    brutalDoom64,
     purist,
     vanilla,
     brutalDoom,
-    psxDoomBrutal,
-    mapsOfChaos,
+    brutalDoom2,
+    psxDoom,
+    hellsPlayground,
+    brutalDoom64,
   },
 };

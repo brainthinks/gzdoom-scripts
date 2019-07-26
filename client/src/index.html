@@ -13,14 +13,49 @@
   <body>
 
     <div class="launcher-main">
-      <button id="doom-play" class="btn">Play</button>
+      <div id="buttons"></div>
     </div>
 
-    <div class="launcher-debug">
-      <div class="console">
-        <span id="cursor">_</span>
+    <div class="terminal">
+      <div class="actions">
+        <button>Clear</button>
+        <label>
+          <input type="checkbox" />
+          <span>Auto Scroll</span>
+        </label>
+        <div class="application gzdoom">
+          <label>
+            <input type="checkbox" />
+            <span>GZDoom</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>stdout</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>stderr</span>
+          </label>
+        </div>
+        <div class="application ffmpeg">
+          <label>
+            <input type="checkbox" />
+            <span>FFMPEG</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>stdout</span>
+          </label>
+          <label>
+            <input type="checkbox" />
+            <span>stderr</span>
+          </label>
+        </div>
       </div>
-      <div class="background"></div>
+      <div class="console">
+        <div class="output"></div>
+        <div class="background"></div>
+      </div>
     </div>
 
   </body>
