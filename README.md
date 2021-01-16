@@ -48,6 +48,9 @@ At some point, I would like to be able to launch any game I want from this tool,
     * [https://www.youtube.com/user/SGtMarkIV/videos](https://www.youtube.com/user/SGtMarkIV/videos)
 * pa1nki113r / Project Brutality
     * [https://github.com/pa1nki113r/Project_Brutality](https://github.com/pa1nki113r/Project_Brutality)
+* HXRTC HUD
+    * [https://forum.zdoom.org/viewtopic.php?f=46&t=63883](https://forum.zdoom.org/viewtopic.php?f=46&t=63883)
+    * [https://www.mediafire.com/folder/tzidlj2nh4wis/Doom_Files](https://www.mediafire.com/folder/tzidlj2nh4wis/Doom_Files)
 * Maps of Chaos
 * Project Remap
     * [https://www.youtube.com/channel/UCu_ZCOwSdqeWEKTmH6VX9KQ](https://www.youtube.com/channel/UCu_ZCOwSdqeWEKTmH6VX9KQ)

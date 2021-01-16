@@ -4,7 +4,8 @@
   "description": "A web-based doom launcher",
   "main": "index.js",
   "scripts": {
-    "serve": "node-dev ./src/index.js",
+    "serve": "node-dev ./_legacy/index.js",
+    "serve-beta": "node-dev ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
